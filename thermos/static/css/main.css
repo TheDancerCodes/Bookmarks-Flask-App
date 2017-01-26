@@ -69,24 +69,24 @@ body {
     ALL: Red Theme
    =================== */
 
-.header-container {
-    border-bottom: 20px solid #f37171;
-}
+   .header-container {
+       border-bottom: 20px solid #0D3E5B;
+   }
 
-.footer-container,
-.main aside {
-    border-top: 20px solid #f37171;
-}
+   .footer-container,
+   .main aside {
+       border-top: 20px solid #0D3E5B;
+   }
 
-.header-container,
-.footer-container,
-.main aside {
-    background: #b8b8f9;
-}
+   .header-container,
+   .footer-container,
+   .main aside {
+       background: #326786;
+   }
 
-.title {
-    color: white;
-}
+   .title {
+       color: white;
+   }
 
 /* ==============
     MOBILE: Menu
@@ -108,7 +108,7 @@ nav a {
     font-weight: bold;
 
     color: white;
-    background: #f37171;
+    background: #0D3E5B;
 }
 
 nav a:hover,
@@ -154,28 +154,28 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
    /* link styling */
-   a {
-       color: #8F540D;
-   }
-   a:hover, aside a:hover, aside a:visited:hover {
-       color: #D39447;
-   }
+a {
+    color: #8F540D;
+}
+a:hover, aside a:hover, aside a:visited:hover {
+    color: #D39447;
+}
 
-   a:visited {
-       color: #1E5373;
-   }
+a:visited {
+    color: #1E5373;
+}
 
-   h1, h2, h3, h4, h5, h6 {
-       color: #1E5373;
-   }
+h1, h2, h3, h4, h5, h6 {
+    color: #1E5373;
+}
 
-   .main aside h3,
-   footer h3,
-   footer a,
-   footer a:visited {
-       color: white;
+.main aside h3,
+footer h3,
+footer a,
+footer a:visited {
+    color: white;
 
-   }
+}
 
 
 
