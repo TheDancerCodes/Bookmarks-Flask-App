@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="utf-8">
-        <title>Add a new Bookmark</title>
-    </head>
-    <body>
-        <form action="" method="post">
-            <p>
-                Please enter your bookmark here:
-                <input type="text" name="url">
-            </p>
-            <p>
-                <button type="submit">Submit</button>
-            </p>
+{% extends "base.html" %}
 
+{% block title %}
+    Birika -- Add a URL
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>Add a new URL</h1>
+        <form action="" method="post">
+            <article>
+                <p>
+                    Please enter your bookmark here:
+                    <input type="text" name="url">
+                </p>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </article>
         </form>
-    </body>
-</html>
+    </section>
+{% endblock %}
+
+<!-- Overrides default sidebar -->
+{% block sidebar %}
+{% endblock %}
