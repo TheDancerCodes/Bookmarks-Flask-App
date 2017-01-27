@@ -23,5 +23,10 @@ def index():
                             text=["first", "second", "third"],
                             user=User("Roger", "Taracha"))
 
+@app.route('/add')
+def add():
+    """View Function for adding a Bookmark."""
+    return render_template('add.html')
+
 if __name__ == "__main__":
     app.run()
