@@ -1,15 +1,13 @@
 """This is the main file for our Bookmark App."""
 from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for
-
-from logging import DEBUG
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
-app.logger.setLevel(DEBUG)
-
 bookmarks = []
+app.config['SECRET_KEY'] = '9\xbcl\xeb\x83s\xa5]\xf7 +5c\xbd\xafh)\xfcts\xb2Y\x1f\xbd'
 
 def store_bookmark(url):
+    """Function that stores the bookmarks as dicts in a list."""
     bookmarks.append(dict(
         url = url,
         user = "reindert",
@@ -28,7 +26,7 @@ def add():
     if request.method == "POST":
         url = request.form['url']
         store_bookmark(url)
-        app.logger.debug('stored url: ' + url)
+        flash("Stored Bookmark '{}'".format(url))
         return redirect(url_for('index'))
     return render_template('add.html')
 
