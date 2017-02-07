@@ -2,15 +2,18 @@
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
 
+from forms import BookmarkForm
+
 app = Flask(__name__)
 bookmarks = []
 app.config['SECRET_KEY'] = '9\xbcl\xeb\x83s\xa5]\xf7 +5c\xbd\xafh)\xfcts\xb2Y\x1f\xbd'
 
-def store_bookmark(url):
+def store_bookmark(url, description):
     """Function that stores the bookmarks as dicts in a list."""
     bookmarks.append(dict(
         url = url,
-        user = "taracha",
+        description = description,
+        user = "Taracha",
         date = datetime.utcnow
     ))
 
@@ -27,12 +30,14 @@ def index():
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     """View Function for adding a Bookmark."""
-    if request.method == "POST":
-        url = request.form['url']
-        store_bookmark(url)
-        flash("Stored Bookmark '{}'".format(url))
+    form = BookmarkForm()
+    if form.validate_on_submit():
+        url = form.url.data
+        description = form.description.data
+        store_bookmark(url, description)
+        flash("Stored Bookmark '{}'".format(description))
         return redirect(url_for('index'))
-    return render_template('add.html')
+    return render_template('add.html', form=form)
 
 @app.errorhandler(404)
 def page_not_found(e):
