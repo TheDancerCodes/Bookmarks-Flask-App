@@ -10,15 +10,19 @@ def store_bookmark(url):
     """Function that stores the bookmarks as dicts in a list."""
     bookmarks.append(dict(
         url = url,
-        user = "reindert",
+        user = "taracha",
         date = datetime.utcnow
     ))
+
+def new_bookmarks(num):
+    """Functon that returns last bookmarks sorted by date."""
+    return sorted(bookmarks, key=lambda bm: bm['date'], reverse=True)[:num]
 
 @app.route('/')
 @app.route('/index')
 def index():
     """View Function that is returned as a Response for a HTTP Request."""
-    return render_template('index.html')
+    return render_template('index.html', new_bookmarks=new_bookmarks(5))
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():

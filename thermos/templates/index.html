@@ -11,11 +11,22 @@
         <p>Birika is a simple social bookmarking site. Or actually, its a demo for the <a href="https://www.pluralsight.com/courses/flask-micro-framework-introduction">PluralSight</a> course titled <i>Flask Fundamentals</i></p>
     </header>
     <section>
-        <h2>article section h2</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+        <h2>Recently Added</h2>
+        {% if new_bookmarks %}
+            <ul>
+            {% for bm in new_bookmarks %}
+                <li>{{ bm.user }} added <a href="{{ bm.url }}">{{ bm.url }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            No bookmarks yet.
+        {% endif %}
     </section>
+
     <section>
-        
+        <h2>article section 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </section>
+    
 </article>
 {% endblock %}
