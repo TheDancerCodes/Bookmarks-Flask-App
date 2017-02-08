@@ -1,12 +1,22 @@
 """This is the main file for our Bookmark App."""
+import os
 from datetime import datetime
+
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_alchemy import SQLAlchemy
 
 from forms import BookmarkForm
+
+# Determine path to current python file
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 bookmarks = []
 app.config['SECRET_KEY'] = '9\xbcl\xeb\x83s\xa5]\xf7 +5c\xbd\xafh)\xfcts\xb2Y\x1f\xbd'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'birika.db')
+# Initialise SQLAlchemy
+# db variable reps DB connection & provides access to all flask_alchemy functionality
+db = SQLAlchemy(app)
 
 def store_bookmark(url, description):
     """Function that stores the bookmarks as dicts in a list."""
