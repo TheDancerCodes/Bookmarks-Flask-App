@@ -19,6 +19,9 @@ db = SQLAlchemy(app)
 from forms import BookmarkForm
 import models
 
+# Fake Login [mocks the login process with a default user.]
+def logged_in_user():
+    return models.User.query.filter_by(username='Taracha').first()
 
 @app.route('/')
 @app.route('/index')
@@ -33,7 +36,7 @@ def add():
     if form.validate_on_submit():
         url = form.url.data
         description = form.description.data
-        bm = models.Bookmark(url=url, description=description)
+        bm = models.Bookmark(user=logged_in_user(), url=url, description=description)
         db.session.add(bm)
         db.session.commit()
         flash("Stored Bookmark '{}'".format(description))
@@ -49,6 +52,3 @@ def page_not_found(e):
 def server_error(e):
     """View Function that returns the 500 error page."""
     return render_template('500.html'), 500
-
-if __name__ == "__main__":
-    app.run(debug=True)
