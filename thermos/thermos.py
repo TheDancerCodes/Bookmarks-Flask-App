@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_alchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 from forms import BookmarkForm
 
