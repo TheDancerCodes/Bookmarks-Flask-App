@@ -1,4 +1,5 @@
 from flask import render_template, redirect, url_for, flash
+from flask_login import login_required
 
 from thermos import app, db
 from forms import BookmarkForm
@@ -15,6 +16,7 @@ def index():
     return render_template('index.html', new_bookmarks=Bookmark.latest_bookmarks(5))
 
 @app.route('/add', methods=['GET', 'POST'])
+@login_required
 def add():
     """View Function for adding a Bookmark."""
     form = BookmarkForm()
