@@ -44,11 +44,12 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         # login and validate the user
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is not None:
+        user = User.get_by_username(form.username.data)
+        if user is not None and user.check_password(form.password.data):
             login_user(user, form.remember_me.data)
             flash("Logged in succesfully as {}.".format(user.username))
-            return redirect(request.args.get('next') or url_for('index'))
+            return redirect(request.args.get('next') or url_for('user',
+                                                username=user.username))
         flash("Incorrect Username or Password.")
     return render_template("login.html", form=form)
 
