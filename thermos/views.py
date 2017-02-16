@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user, current_user
 
 from thermos import app, db, login_manager
-from forms import BookmarkForm, LoginForm
+from forms import BookmarkForm, LoginForm, SignupForm
 from models import User, Bookmark
 
 @login_manager.user_loader
@@ -58,6 +58,19 @@ def logout():
     """View Function that logs out users and redirects them to index page."""
     logout_user()
     return redirect(url_for('index'))
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    form = SignupForm()
+    if form.validate_on_submit():
+        user = User(email=form.email.data,
+                    username=form.username.data,
+                    password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Welcome, {}! Please Login.'.format(user.username))
+        return redirect(url_for('login'))
+    return render_template("signup.html", form=form)
 
 @app.errorhandler(404)
 def page_not_found(e):
