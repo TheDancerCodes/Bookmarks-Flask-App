@@ -3,3 +3,4 @@ flask-wtf
 flask-sqlalchemy
 flask-script
 flask-login
+flask-moment

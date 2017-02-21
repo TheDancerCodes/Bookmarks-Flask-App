@@ -4,11 +4,14 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask.ext.moment import Moment
+
+app = Flask(__name__)
 
 # Determine path to current python file
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
+# Configure Database
 app.config['SECRET_KEY'] = '9\xbcl\xeb\x83s\xa5]\xf7 +5c\xbd\xafh)\xfcts\xb2Y\x1f\xbd'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'birika.db')
 app.config['DEBUG'] = True
@@ -21,6 +24,9 @@ login_manager = LoginManager()
 login_manager.session_protection = "strong"
 login_manager.login_view = "login"
 login_manager.init_app(app)
+
+# for displaying timestamps
+moment = Moment(app)
 
 import models
 import views
