@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 from thermos import app, db
-from thermos.models import User, Bookmark
+from thermos.models import User, Bookmark, Tag
 from flask_script import Manager, prompt_bool
 from flask_migrate import Migrate, MigrateCommand
 
@@ -12,10 +12,28 @@ migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 @manager.command
-def initdb():
-    db.create_all()
-    db.session.add(User(username="Taracha", email="rojtaracha@gmail.com", password="test"))
-    db.session.add(User(username="Shem", email="shem@gmail.com", password="test"))
+def insert_data():
+    """A utility function to insert test data into the database."""
+    taracha = User(username="taracha", email="rojtaracha@gmail.com", password="test")
+    db.session.add(taracha)
+
+
+    def add_bookmark(url, description, tags):
+        """Internal Function that adds new bookmarks."""
+        db.session.add(Bookmark(url=url, description=description, user=taracha,
+                                tags=tags))
+
+    # loop that adds a list of tags.
+    for name in ["dance", "choreography", "motion", "turnup", "hiphop", "kenya", "music", "dab", "hype", "afrobeat" ]:
+        db.session.add(Tag(name=name))
+    db.session.commit()
+
+    add_bookmark("http://worldofdance.com/", "World Of Dance. [WOD]", "dance,choreography,motion,turnup")
+    add_bookmark("http://www.hiphopinternational.com/", "HiphopInternational. [HHI]", "hiphop,kenya,music,dab,hype")
+    add_bookmark("http://dance254.com/", "DANCE254. [KE]", "dance,motion,turnup,hiphop,kenya")
+
+    shem = User(username="shem", email="shem@gmail.com", password="test")
+    db.session.add(shem)
     db.session.commit()
     print 'Initialized the database.'
 
