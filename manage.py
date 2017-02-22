@@ -1,10 +1,15 @@
 #! /usr/bin/env python
 
 from thermos import app, db
-from thermos.models import User
+from thermos.models import User, Bookmark
 from flask_script import Manager, prompt_bool
+from flask_migrate import Migrate, MigrateCommand
 
 manager = Manager(app)
+migrate = Migrate(app, db)
+
+# Gives access to DB migration commands with a prefix of db
+manager.add_command('db', MigrateCommand)
 
 @manager.command
 def initdb():
