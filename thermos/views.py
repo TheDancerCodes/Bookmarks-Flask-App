@@ -3,7 +3,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 
 from thermos import app, db, login_manager
 from forms import BookmarkForm, LoginForm, SignupForm
-from models import User, Bookmark
+from models import User, Bookmark, Tag
 
 @login_manager.user_loader
 def load_user(userid):
@@ -25,7 +25,8 @@ def add():
     if form.validate_on_submit():
         url = form.url.data
         description = form.description.data
-        bm = Bookmark(user=current_user, url=url, description=description)
+        tags = form.tags.data
+        bm = Bookmark(user=current_user, url=url, description=description, tags=tags)
         db.session.add(bm)
         db.session.commit()
         flash("Stored Bookmark '{}'".format(description))
