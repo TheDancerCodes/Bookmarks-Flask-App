@@ -88,6 +88,15 @@ def signup():
         return redirect(url_for('login'))
     return render_template("signup.html", form=form)
 
+@app.route('/tag/<name>')
+def tag(name):
+    tag = Tag.query.filter_by(name=name).first_or_404()
+    return render_template('tag.html', tag=tag)
+
+@app.errorhandler(403)
+def forbidden(e):
+    return render_template('403.html'), 403
+
 @app.errorhandler(404)
 def page_not_found(e):
     """View Function that returns the 404 error page."""
@@ -97,3 +106,7 @@ def page_not_found(e):
 def server_error(e):
     """View Function that returns the 500 error page."""
     return render_template('500.html'), 500
+
+@app.context_processor
+def inject_tags():
+    return dict(all_tags=Tag.all)

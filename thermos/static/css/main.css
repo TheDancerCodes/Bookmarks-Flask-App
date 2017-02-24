@@ -154,28 +154,36 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
    /* link styling */
-a {
-    color: #8F540D;
-}
-a:hover, aside a:hover, aside a:visited:hover {
-    color: #D39447;
-}
+   a,
+   a:visited {
+       color: #1E5373;
+   }
+   a:hover, aside a:hover, aside a:visited:hover {
+       color: #D39447;
+   }
 
-a:visited {
-    color: #1E5373;
-}
+   aside a {
+       color: #FFD6A3;
+   }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #1E5373;
-}
+   aside a:hover {
+       color: #F5BB73;
+   }
 
-.main aside h3,
-footer h3,
-footer a,
-footer a:visited {
-    color: white;
+   aside a:visited {
+       color: #D39447;
+   }
 
-}
+   h1, h2, h3, h4, h5, h6 {
+       color: #1E5373;
+   }
+
+   .main aside h3,
+   footer h3,
+   footer a,
+   footer a:visited {
+       color: white;
+   }
 
 
 .flashes ul{

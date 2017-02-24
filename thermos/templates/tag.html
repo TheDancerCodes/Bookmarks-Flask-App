@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Birika -- Boomarks tagged {{ tag }}
+{% endblock %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>Bookmarks tagged {{ tag }}</h1>
+
+                {% if tag.bookmarks.count() > 0 %}
+                    {% with bookmarks=tag.bookmarks %}
+                        {% include "bookmark_list.html" %}
+                    {% endwith %}
+                {% else %}
+                    <li>There are no bookmarks with this tag.</li>
+                {% endif %}
+
+        </header>
+
+    </article>
+{% endblock %}
