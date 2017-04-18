@@ -34,12 +34,13 @@
 {% block sidebar %}
 {% endblock %}
 
+<!-- Overiding scripts block with own page specific scripts. -->
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/vendor/select2.min.js') }}"></script>
 <script>
 $(document).ready(function(){
     var _tags = {{ all_tags()|map(attribute='name')|list|tojson|safe }};
     $('#tags').select2({tags: _tags, tokenSeparators: [",", " "]});
-});    
+});
 </script>
 {% endblock %}
