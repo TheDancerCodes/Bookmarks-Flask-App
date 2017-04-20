@@ -11,7 +11,7 @@ def load_user(userid):
 
 @main.route('/')
 def index():
-    return render_template('index.html', new_bookmarks=Bookmark.newest(5))
+    return render_template('index.html', new_bookmarks=Bookmark.latest_bookmarks(5))
 
 
 @main.app_errorhandler(403)
