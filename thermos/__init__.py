@@ -32,7 +32,13 @@ toolbar = DebugToolbarExtension(app)
 # for displaying timestamps
 moment = Moment(app)
 
-# register all views on the blueprinton the app.
+# register all views on the blueprint on the app.
+from .main import main as main_blueprint
+app.register_blueprint(main_blueprint, url_prefix='/')
+
+from .bookmarks import bookmarks as bkm_blueprint
+app.register_blueprint(bkm_blueprint, url_prefix='/bookmarks')
+
 from .auth import auth as auth_blueprint
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
