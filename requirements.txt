@@ -6,3 +6,5 @@ flask-login
 flask-moment
 flask-migrate
 flask-debugtoolbar
+flask-testing
+nose

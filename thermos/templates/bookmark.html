@@ -22,8 +22,8 @@
         {{ moment(bookmark.date).fromNow() }}.
         {% if current_user == bookmark.user and not nolinks %}
             <span class="editlinks">
-                <a href="{{ url_for('bookmarks.edit_bookmark', bookmark_id=bookmark.id) }}">edit</a>
-                <a href="{{ url_for('bookmarks.delete_bookmark', bookmark_id=bookmark.id) }}">delete</a>
+                <a href="{{ url_for('bookmarks.edit', bookmark_id=bookmark.id) }}">edit</a>
+                <a href="{{ url_for('bookmarks.delete', bookmark_id=bookmark.id) }}">delete</a>
             </span>
         {% endif %}
     </div>
